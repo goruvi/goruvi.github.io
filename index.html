@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Groovy's Website</title>
+<title>Groovy | Portfolio</title>
 
 <!-- Discord / social embed -->
-<meta property="og:title" content="Groovy's Website">
-<meta property="og:description" content="Christmas is rich">
+<meta property="og:title" content="Groovy's Portfolio">
+<meta property="og:description" content="Projects, skills and all of Groovy's social media :)">
 <meta property="og:image" content="https://cdn.discordapp.com/avatars/1288732672075763716/cc6cbb38243cd1d71163e262979a2c7e.png">
 <meta property="og:type" content="website">
 <meta name="theme-color" content="#38BDF8">
@@ -24,34 +24,32 @@
     --cyan:#38BDF8;
     --ink:#F1F5F9;
     --muted:#94A3B8;
+    --line:rgba(255,255,255,.1);
   }
   *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;scroll-padding-top:84px;}
   body{
     background:var(--midnight);
     color:var(--ink);
     font-family:'Inter',sans-serif;
     min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:64px 24px;
     position:relative;
     overflow-x:hidden;
     -webkit-font-smoothing:antialiased;
+    line-height:1.6;
   }
   .bg-gif{
     position:fixed;inset:0;z-index:-2;
     background:url('background.gif') center center / cover no-repeat;
     filter:blur(8px);
-    transform:scale(1.1); /* hides the blurred edge */
+    transform:scale(1.1);
   }
   .bg-overlay{
     position:fixed;inset:0;z-index:-1;
-    background:rgba(11,15,25,.4);
+    background:rgba(11,15,25,.55);
   }
-  main{position:relative;width:100%;max-width:380px;display:none;}
 
+  /* ---------- Loader ---------- */
   #loader{
     position:fixed;inset:0;z-index:200;
     background:transparent;
@@ -64,37 +62,74 @@
     background:linear-gradient(100deg,var(--ink) 0%, var(--blue) 55%, var(--cyan) 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .progress-track{
-    width:220px;height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;
-  }
+  .progress-track{width:220px;height:5px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;}
   .progress-fill{
     height:100%;width:0%;border-radius:99px;
     background:linear-gradient(90deg, var(--blue), var(--cyan));
     box-shadow:0 0 12px rgba(56,189,248,.6);
   }
-  .progress-percent{
-    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);letter-spacing:.04em;
-  }
+  .progress-percent{font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);letter-spacing:.04em;}
 
-  .profile{display:flex;flex-direction:column;align-items:center;text-align:center;margin-bottom:40px;}
-  .avatar-ring{
-    width:96px;height:96px;border-radius:50%;padding:3px;margin-bottom:20px;
-    background:linear-gradient(135deg, var(--blue), var(--cyan));
+  #site{display:none;}
+
+  /* ---------- Nav ---------- */
+  nav{
+    position:fixed;top:0;left:0;right:0;z-index:100;
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 28px;
+    background:rgba(11,15,25,.6);
+    backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+    border-bottom:1px solid var(--line);
   }
-  .avatar-inner{
-    width:100%;height:100%;border-radius:50%;background:var(--panel);
-    display:flex;align-items:center;justify-content:center;
-    overflow:hidden;
-  }
-  .avatar-inner img{width:100%;height:100%;object-fit:cover;display:block;}
-  h1{
-    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:26px;margin-bottom:6px;
+  .nav-logo{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:18px;text-decoration:none;
     background:linear-gradient(100deg,var(--ink) 0%, var(--blue) 55%, var(--cyan) 100%);
     -webkit-background-clip:text;background-clip:text;color:transparent;
   }
-  .status{display:flex;align-items:center;gap:8px;font-size:14px;color:var(--muted);}
+  .nav-links{display:flex;gap:6px;}
+  .nav-links a{
+    color:var(--muted);text-decoration:none;font-size:14px;font-weight:500;
+    padding:6px 12px;border-radius:8px;transition:all .25s ease;
+  }
+  .nav-links a:hover,.nav-links a.active{color:var(--ink);background:rgba(56,189,248,.12);}
+
+  /* ---------- Layout ---------- */
+  section{max-width:960px;margin:0 auto;padding:96px 24px 40px;}
+  .section-label{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--cyan);
+    letter-spacing:.08em;text-transform:uppercase;margin-bottom:8px;
+  }
+  h2{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:30px;margin-bottom:28px;
+  }
+  .glass{
+    border:1px solid var(--line);
+    background:rgba(17,28,51,.6);
+    border-radius:14px;
+    backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  }
+
+  /* ---------- Hero ---------- */
+  #home{
+    min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+    text-align:center;padding-top:110px;
+  }
+  .avatar-ring{
+    width:132px;height:132px;border-radius:50%;padding:4px;margin-bottom:26px;
+    background:linear-gradient(135deg, var(--blue), var(--cyan));
+    box-shadow:0 0 50px -10px rgba(56,189,248,.5);
+  }
+  .avatar-inner{width:100%;height:100%;border-radius:50%;background:var(--panel);overflow:hidden;}
+  .avatar-inner img{width:100%;height:100%;object-fit:cover;display:block;}
+  .hero-hi{font-family:'JetBrains Mono',monospace;color:var(--muted);font-size:14px;margin-bottom:6px;}
+  h1{
+    font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:clamp(40px,8vw,64px);line-height:1.1;margin-bottom:14px;
+    background:linear-gradient(100deg,var(--ink) 0%, var(--blue) 55%, var(--cyan) 100%);
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .status{display:flex;align-items:center;justify-content:center;gap:8px;font-size:16px;color:var(--muted);max-width:480px;}
   .status-dot{
-    width:8px;height:8px;border-radius:50%;background:var(--cyan);
+    flex-shrink:0;width:8px;height:8px;border-radius:50%;background:var(--cyan);
     animation:pulse 2s infinite;
   }
   @keyframes pulse{
@@ -102,17 +137,80 @@
     70%{ box-shadow:0 0 0 8px rgba(56,189,248,0); }
     100%{ box-shadow:0 0 0 0 rgba(56,189,248,0); }
   }
+  .cta{display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;justify-content:center;}
+  .btn{
+    display:inline-block;padding:12px 24px;border-radius:10px;font-weight:600;font-size:14.5px;
+    text-decoration:none;transition:all .3s ease;
+  }
+  .btn-primary{background:linear-gradient(90deg,var(--blue),var(--cyan));color:#fff;}
+  .btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 30px -12px rgba(56,189,248,.7);}
+  .btn-ghost{border:1px solid var(--line);color:var(--ink);background:rgba(17,28,51,.5);}
+  .btn-ghost:hover{border-color:rgba(56,189,248,.55);transform:translateY(-3px);}
 
-  .links{display:flex;flex-direction:column;gap:14px;}
+  /* ---------- About ---------- */
+  .about{display:grid;grid-template-columns:1.4fr 1fr;gap:20px;}
+  .about .glass{padding:26px;}
+  .about p{color:var(--muted);font-size:15.5px;}
+  .about p + p{margin-top:14px;}
+  .facts{list-style:none;display:flex;flex-direction:column;gap:14px;}
+  .facts li{display:flex;justify-content:space-between;font-size:14.5px;gap:12px;}
+  .facts span:first-child{color:var(--muted);}
+  .facts span:last-child{font-weight:600;text-align:right;}
+
+  /* ---------- Skills ---------- */
+  .skills{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;}
+  .skill{padding:22px;}
+  .skill-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+  .skill-name{font-weight:600;font-size:16px;}
+  .skill-tag{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--cyan);}
+  .bar{height:6px;border-radius:99px;background:rgba(255,255,255,.08);overflow:hidden;}
+  .bar span{
+    display:block;height:100%;width:0;border-radius:99px;
+    background:linear-gradient(90deg,var(--blue),var(--cyan));
+    transition:width 1.2s cubic-bezier(.2,.7,.2,1);
+  }
+  .skill p{font-size:13.5px;color:var(--muted);margin-top:12px;}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px;}
+  .chip{
+    font-family:'JetBrains Mono',monospace;font-size:12.5px;color:var(--muted);
+    padding:6px 12px;border-radius:99px;border:1px solid var(--line);background:rgba(17,28,51,.5);
+  }
+
+  /* ---------- Projects ---------- */
+  .projects{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;}
+  .project{
+    display:flex;flex-direction:column;text-decoration:none;color:inherit;overflow:hidden;
+    transition:all .3s ease;
+  }
+  .project:hover{
+    border-color:rgba(56,189,248,.55);
+    box-shadow:0 0 0 1px rgba(56,189,248,.15), 0 16px 36px -16px rgba(37,99,235,.5);
+    transform:translateY(-4px);
+  }
+  .thumb{
+    height:150px;display:flex;align-items:center;justify-content:center;
+    background:linear-gradient(135deg,rgba(37,99,235,.35),rgba(56,189,248,.15));
+    border-bottom:1px solid var(--line);
+    font-family:'JetBrains Mono',monospace;font-size:34px;color:rgba(241,245,249,.55);
+  }
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;}
+  .project-body{padding:20px;display:flex;flex-direction:column;gap:8px;flex:1;}
+  .project-title{font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;font-size:18px;}
+  .project-desc{font-size:14px;color:var(--muted);flex:1;}
+  .project-tags{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px;}
+  .project-tags span{
+    font-family:'JetBrains Mono',monospace;font-size:11.5px;color:var(--cyan);
+    background:rgba(56,189,248,.1);padding:3px 9px;border-radius:6px;
+  }
+
+  /* ---------- Contact ---------- */
+  .links{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;}
   .link-card{
     display:flex;align-items:center;gap:16px;
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid var(--line);
     background:rgba(17,28,51,.6);
-    border-radius:12px;
-    padding:16px 20px;
-    text-decoration:none;
-    color:inherit;
-    transition:all .3s ease;
+    border-radius:12px;padding:16px 20px;
+    text-decoration:none;color:inherit;transition:all .3s ease;
   }
   .link-card:hover{
     border-color:rgba(56,189,248,.55);
@@ -124,23 +222,29 @@
     display:flex;align-items:center;justify-content:center;flex-shrink:0;
   }
   .icon-box svg{width:18px;height:18px;stroke:var(--ink);}
-  .link-text{flex:1;text-align:left;}
-  .link-text .name{display:block;font-weight:600;font-size:14.5px;color:var(--ink);}
-  .link-text .handle{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;}
+  .link-text{flex:1;text-align:left;min-width:0;}
+  .link-text .name{display:block;font-weight:600;font-size:14.5px;}
+  .link-text .handle{display:block;font-size:12.5px;color:var(--muted);margin-top:2px;overflow:hidden;text-overflow:ellipsis;}
   .arrow{color:var(--muted);font-size:14px;}
 
-  footer{
-    text-align:center;font-size:12.5px;color:var(--muted);margin-top:36px;
-  }
+  footer{text-align:center;font-size:12.5px;color:var(--muted);padding:56px 24px 40px;}
 
-  .reveal{
-    opacity:0;transform:translateY(14px);
-    animation:in .6s ease forwards;
-  }
-  @keyframes in{ to{ opacity:1; transform:translateY(0); } }
+  /* ---------- Reveal ---------- */
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
 
+  @media (max-width:720px){
+    nav{padding:12px 16px;}
+    .nav-links a{padding:6px 8px;font-size:13px;}
+    .about{grid-template-columns:1fr;}
+  }
+  @media (max-width:440px){
+    .nav-logo{display:none;}
+    nav{justify-content:center;}
+  }
   @media (prefers-reduced-motion: reduce){
     *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+    .reveal{opacity:1;transform:none;}
   }
 </style>
 </head>
@@ -157,110 +261,223 @@
   <span class="progress-percent" id="progressPercent">0%</span>
 </div>
 
-<main>
-  <div class="profile reveal" style="animation-delay:.05s">
-    <div class="avatar-ring">
-      <div class="avatar-inner">
-        <img src="avatar.png" alt="Groovy's avatar">
+<div id="site">
+
+  <nav>
+    <a href="#home" class="nav-logo">Groovy</a>
+    <div class="nav-links">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <!-- HOME -->
+  <section id="home">
+    <div class="avatar-ring reveal">
+      <div class="avatar-inner"><img src="avatar.png" alt="Groovy's avatar"></div>
+    </div>
+    <p class="hero-hi reveal">Hi, I'm</p>
+    <h1 class="reveal">Groovy</h1>
+    <p class="status reveal"><span class="status-dot"></span>Minecraft Add-ons maker & Coding Beginner</p>
+    <div class="cta reveal">
+      <a href="#projects" class="btn btn-primary">View my work</a>
+      <a href="#contact" class="btn btn-ghost">Get in touch</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <p class="section-label reveal">01 / About</p>
+    <h2 class="reveal">About me</h2>
+    <div class="about">
+      <div class="glass reveal">
+        <p>Hi! I'm Groovy, a beginner developer who loves building things and learning by doing. I'm currently learning HTML and Python, and I try to make something new every time I pick up a new skill.</p>
+        <p>This site is where I keep my projects and all my socials in one place.</p>
+      </div>
+      <div class="glass reveal">
+        <ul class="facts">
+          <li><span>Name</span><span>Groovy</span></li>
+          <li><span>Focus</span><span>Web &amp; Python</span></li>
+          <li><span>Level</span><span>Beginner</span></li>
+          <li><span>Status</span><span>Learning &amp; building</span></li>
+        </ul>
       </div>
     </div>
-    <h1>Groovy</h1>
-    <p class="status"><span class="status-dot"></span>i dont know what to put here :)</p>
-  </div>
+  </section>
 
-  <div class="links">
-    <a href="https://discord.gg/8NdPcpzD" target="_blank" rel="noopener noreferrer" class="link-card reveal" style="animation-delay:.1s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M8 12h.01M16 12h.01M8 15c1.5 1 6.5 1 8 0"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">Discord</span>
-        <span class="handle">goruvi</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+  <!-- SKILLS -->
+  <section id="skills">
+    <p class="section-label reveal">02 / Skills</p>
+    <h2 class="reveal">What I'm learning</h2>
+    <div class="skills">
+      <div class="glass skill reveal">
+        <div class="skill-head"><span class="skill-name">HTML &amp; CSS</span><span class="skill-tag">Learning</span></div>
+        <div class="bar"><span data-level="50"></span></div>
+        <p>Building pages, layouts and animations like the one you're looking at.</p>
+      </div>
+      <div class="glass skill reveal">
+        <div class="skill-head"><span class="skill-name">Python</span><span class="skill-tag">Learning</span></div>
+        <div class="bar"><span data-level="20"></span></div>
+        <p>Scripts, small tools and practice projects.</p>
+      </div>
+      <div class="glass skill reveal">
+        <div class="skill-head"><span class="skill-name">JavaScript</span><span class="skill-tag">Starting out</span></div>
+        <div class="bar"><span data-level="25"></span></div>
+        <p>Adding interactivity to my pages.</p>
+      </div>
+    </div>
+    <div class="chips reveal">
+      <span class="chip">HTML</span>
+      <span class="chip">CSS</span>
+      <span class="chip">Python</span>
+      <span class="chip">JavaScript</span>
+      <span class="chip">GitHub</span>
+    </div>
+  </section>
 
-    <a href="https://x.com/TViet2911" target="_blank" rel="noopener noreferrer" class="link-card reveal" style="animation-delay:.15s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4.36a9 9 0 0 1-2.83 1.08 4.52 4.52 0 0 0-7.7 4.13A12.8 12.8 0 0 1 2.9 1.64a4.52 4.52 0 0 0 1.4 6.03A4.47 4.47 0 0 1 2.3 7v.06a4.52 4.52 0 0 0 3.63 4.43 4.5 4.5 0 0 1-2 .08 4.53 4.53 0 0 0 4.22 3.14A9.06 9.06 0 0 1 1 16.65a12.76 12.76 0 0 0 6.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.39-.01-.58A9.2 9.2 0 0 0 23 3z"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">X / Twitter</span>
-        <span class="handle">@TViet2911</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+  <!-- PROJECTS -->
+  <section id="projects">
+    <p class="section-label reveal">03 / Projects</p>
+    <h2 class="reveal">Things I've made</h2>
+    <div class="projects">
 
-    <a href="https://youtube.com/@viet_rhythm" target="_blank" rel="noopener noreferrer" class="link-card reveal" style="animation-delay:.2s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.5 6.2a2.8 2.8 0 0 0-2-2C18.7 3.7 12 3.7 12 3.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.8 2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.8z"/><path d="M9.8 15.3 15.5 12 9.8 8.7z" fill="var(--ink)" stroke="none"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">YouTube</span>
-        <span class="handle">@viet_rhythm</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="glass project reveal">
+        <div class="thumb">&lt;/&gt;</div>
+        <div class="project-body">
+          <span class="project-title">This Portfolio</span>
+          <span class="project-desc">My personal website.</span>
+          <div class="project-tags"><span>HTML</span><span>CSS</span><span>JS</span></div>
+        </div>
+      </a>
 
-    <a href="https://github.com/goruvi" target="_blank" rel="noreferrer noopener" class="link-card reveal" style="animation-delay:.25s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">GitHub</span>
-        <span class="handle">@goruvi</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+      <!-- Replace the link, thumbnail, title and description with your own project -->
+      <a href="#" target="_blank" rel="noopener noreferrer" class="glass project reveal">
+        <div class="thumb">+</div>
+        <div class="project-body">
+          <span class="project-title">Coming Soon</span>
+          <span class="project-desc">Secret. </span>
+          <div class="project-tags"><span>Minecraft Bedrock Edition Add-ons</span></div>
+        </div>
+      </a>
 
-    <a href="mailto:vietrhythm.jp@gmail.com" class="link-card reveal" style="animation-delay:.3s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">Email</span>
-        <span class="handle">vietrhythm.jp@gmail.com</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
+      <a href="#" target="_blank" rel="noopener noreferrer" class="glass project reveal">
+        <div class="thumb">+</div>
+        <div class="project-body">
+          <span class="project-title">Coming soon</span>
+          <span class="project-desc">Secret.</span>
+          <div class="project-tags"><span>In progress</span></div>
+        </div>
+      </a>
 
-    <a href="#" class="link-card reveal" style="animation-delay:.3s">
-      <span class="icon-box">
-        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
-      </span>
-      <span class="link-text">
-        <span class="name">Test</span>
-        <span class="handle">This is a test button</span>
-      </span>
-      <span class="arrow">→</span>
-    </a>
-  </div>
+    </div>
+  </section>
 
-  <footer class="reveal" style="animation-delay:.35s">© 2026 Groovy</footer>
-</main>
+  <!-- CONTACT -->
+  <section id="contact">
+    <p class="section-label reveal">04 / Contact</p>
+    <h2 class="reveal">Find me online</h2>
+    <div class="links">
+
+      <a href="https://discord.gg/8NdPcpzD" target="_blank" rel="noopener noreferrer" class="link-card reveal">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="4"/><path d="M8 12h.01M16 12h.01M8 15c1.5 1 6.5 1 8 0"/></svg>
+        </span>
+        <span class="link-text"><span class="name">Discord</span><span class="handle">goruvi</span></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://x.com/TViet2911" target="_blank" rel="noopener noreferrer" class="link-card reveal">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M23 3a10.9 10.9 0 0 1-3.14 1.53A4.48 4.48 0 0 0 22.4.36a9 9 0 0 1-2.83 1.08 4.52 4.52 0 0 0-7.7 4.13A12.8 12.8 0 0 1 2.9 1.64a4.52 4.52 0 0 0 1.4 6.03A4.47 4.47 0 0 1 2.3 7v.06a4.52 4.52 0 0 0 3.63 4.43 4.5 4.5 0 0 1-2 .08 4.53 4.53 0 0 0 4.22 3.14A9.06 9.06 0 0 1 1 16.65a12.76 12.76 0 0 0 6.92 2.03c8.3 0 12.85-6.88 12.85-12.85 0-.2 0-.39-.01-.58A9.2 9.2 0 0 0 23 3z"/></svg>
+        </span>
+        <span class="link-text"><span class="name">X / Twitter</span><span class="handle">@TViet2911</span></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://youtube.com/@viet_rhythm" target="_blank" rel="noopener noreferrer" class="link-card reveal">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22.5 6.2a2.8 2.8 0 0 0-2-2C18.7 3.7 12 3.7 12 3.7s-6.7 0-8.5.5a2.8 2.8 0 0 0-2 2A29 29 0 0 0 1 12a29 29 0 0 0 .5 5.8 2.8 2.8 0 0 0 2 2c1.8.5 8.5.5 8.5.5s6.7 0 8.5-.5a2.8 2.8 0 0 0 2-2A29 29 0 0 0 23 12a29 29 0 0 0-.5-5.8z"/><path d="M9.8 15.3 15.5 12 9.8 8.7z" fill="var(--ink)" stroke="none"/></svg>
+        </span>
+        <span class="link-text"><span class="name">YouTube</span><span class="handle">@viet_rhythm</span></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="https://github.com/goruvi" target="_blank" rel="noreferrer noopener" class="link-card reveal">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6 0 0 0-1.3-3.2 4.2 4.2 0 0 0-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3 0 0 0-6.2 0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2 0 0 0-.1 3.2A4.6 4.6 0 0 0 4 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg>
+        </span>
+        <span class="link-text"><span class="name">GitHub</span><span class="handle">@goruvi</span></span>
+        <span class="arrow">→</span>
+      </a>
+
+      <a href="mailto:vietrhythm.jp@gmail.com" class="link-card reveal">
+        <span class="icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 6l8 7 8-7"/></svg>
+        </span>
+        <span class="link-text"><span class="name">Email</span><span class="handle">vietrhythm.jp@gmail.com</span></span>
+        <span class="arrow">→</span>
+      </a>
+
+    </div>
+  </section>
+
+  <footer>© 2026 Groovy</footer>
+</div>
 
 <script>
   const loader = document.getElementById('loader');
   const fill = document.getElementById('progressFill');
   const percentLabel = document.getElementById('progressPercent');
-  const mainEl = document.querySelector('main');
+  const site = document.getElementById('site');
   const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-  function showMain(){
+  function setupScrollEffects(){
+    // Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          e.target.classList.add('in');
+          e.target.querySelectorAll('[data-level]').forEach(b => b.style.width = b.dataset.level + '%');
+          io.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach((el, i) => {
+      el.style.transitionDelay = (i % 4) * 0.07 + 's';
+      io.observe(el);
+    });
+
+    // Highlight active nav link
+    const links = document.querySelectorAll('.nav-links a');
+    const sections = [...document.querySelectorAll('section')];
+    const spy = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting){
+          links.forEach(l => l.classList.toggle('active', l.getAttribute('href') === '#' + e.target.id));
+        }
+      });
+    }, { rootMargin: '-45% 0px -50% 0px' });
+    sections.forEach(s => spy.observe(s));
+  }
+
+  function showSite(){
     loader.classList.add('fade-out');
-    mainEl.style.display = 'flex';
-    mainEl.style.flexDirection = 'column';
+    site.style.display = 'block';
+    setupScrollEffects();
     setTimeout(() => loader.remove(), 550);
   }
 
   if (reduceMotion){
-    showMain();
+    showSite();
   } else {
-    const duration = 2200; // ms
+    const duration = 2200;
     const start = performance.now();
     function frame(now){
       const t = Math.min((now - start) / duration, 1);
-      const eased = 1 - Math.pow(1 - t, 3); // ease-out cubic, smooth deceleration
+      const eased = 1 - Math.pow(1 - t, 3);
       const pct = eased * 100;
       fill.style.width = pct + '%';
       percentLabel.textContent = Math.floor(pct) + '%';
@@ -268,7 +485,7 @@
         requestAnimationFrame(frame);
       } else {
         percentLabel.textContent = '100%';
-        setTimeout(showMain, 300);
+        setTimeout(showSite, 300);
       }
     }
     requestAnimationFrame(frame);
